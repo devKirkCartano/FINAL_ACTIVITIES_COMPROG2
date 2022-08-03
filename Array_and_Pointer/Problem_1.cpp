@@ -12,7 +12,6 @@ int main()
     int transformEven;
     int transformOdd;
     cout << "Enter 10 numbers:\n";
-
     for (int i = 0; i < 10; i++)
     {
         cout << "#" << i + 1 << ": ";
