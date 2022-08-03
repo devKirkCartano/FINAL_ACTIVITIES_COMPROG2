@@ -1,3 +1,8 @@
+/*
+Kirk Cedrick S. Cartano
+BSIT 1 - 2
+PRACTICE PROBLEM #2: SUM OF ODD AND EVEN NUMBERS
+*/
 #include <iostream>
 using namespace std;
 
