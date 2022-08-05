@@ -8,15 +8,15 @@ using namespace std;
 
 int main()
 {
-    int num[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    int num[10];
     int(*ptrNum)[10]; // pointer to the array of 10 elements
     ptrNum = &num;
 
     int transformEven, *ptrTransformEven;
-    ptrTransformEven = &transformEven; 
+    ptrTransformEven = &transformEven;
 
-    int transformOdd, *ptrTransformOdd; 
-    ptrTransformOdd = &transformOdd; 
+    int transformOdd, *ptrTransformOdd;
+    ptrTransformOdd = &transformOdd;
 
     cout << "Enter 10 numbers:\n";
     for (int i = 0; i < 10; i++)
