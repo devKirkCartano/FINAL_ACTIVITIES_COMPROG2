@@ -89,8 +89,14 @@ int main()
 
             cout << " \n  " << line << endl;
         }
-
-        cout << "More Transaction?: ";
+        system("cls");
+        DisplayName();
+        DisplayCashier();
+        cout << " \n  " << line << endl;
+        cout << "\n\t\t\t      KAMAY KAINAN RESTAURANTS " << endl;
+        cout << "\n\t\t\t       OFFICIAL RECEIPT\n";
+        
+        cout << "\n  More Transaction?: ";
         cin >> moreTransaction;
 
         if (moreTransaction == "N" || moreTransaction == "n")
