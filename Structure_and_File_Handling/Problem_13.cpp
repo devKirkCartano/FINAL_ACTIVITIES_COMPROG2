@@ -39,6 +39,7 @@ int main()
     DisplayCashier();
     struct Customer customer;
     int customerNum;
+    string moreTransaction;
 
     // Validate month input
     do
@@ -54,38 +55,49 @@ int main()
         cin >> day;
     } while (day != "1" && day != "2" && day != "3" && day != "4" && day != "5" && day != "6" && day != "7" && day != "8" && day != "9" && day != "10" && day != "11" && day != "12" && day != "13" && day != "14" && day != "15" && day != "16" && day != "17" && day != "18" && day != "19" && day != "20" && day != "21" && day != "22" && day != "23" && day != "24" && day != "25" && day != "26" && day != "27" && day != "28" && day != "29" && day != "30" && day != "31");
 
-    system("cls"); // this clear screen function only works in windows operating system
-    DisplayName();
-    DisplayCashier();
-    cin.ignore(1);
-
-    cout << " \n  " << line << endl;
-    cout << "\n\t\t\t    " << design << " CUSTOMER PROFILE " << design << endl;
-    cout << "\n  Enter Customer's Name: ";
-    getline(cin, customer.customerName);
-
-    cout << "\n  Enter Number of Companions: ";
-    cin >> customer.numOfCompanions;
-
-    cout << " \n  " << line << endl;
-    cout << "\n\t\t\t     " << design << " ORDER DETAILS " << design << endl;
-
-    for (int i = 0; i < customer.numOfCompanions; i++)
+    do
     {
-        cout << "\n  Enter Item Number: ";
-        cin >> customer.itemNum;
-
-        cout << "\n  Enter Item Description: ";
-        cin >> customer.itemDescription;
-
-        cout << "\n  Enter Number of Quantity: ";
-        cin >> customer.quantity;
-
-        cout << "\n  Price: ";
-        cin >> customer.price;
+        system("cls"); // this clear screen function only works in windows operating system
+        DisplayName();
+        DisplayCashier();
+        cin.ignore(1);
 
         cout << " \n  " << line << endl;
-    }
+        cout << "\n\t\t\t    " << design << " CUSTOMER PROFILE " << design << endl;
+        cout << "\n  Enter Customer's Name: ";
+        getline(cin, customer.customerName);
+
+        cout << "\n  Enter Number of Companions: ";
+        cin >> customer.numOfCompanions;
+
+        cout << " \n  " << line << endl;
+        cout << "\n\t\t\t     " << design << " ORDER DETAILS " << design << endl;
+
+        for (int i = 0; i < customer.numOfCompanions; i++)
+        {
+            cout << "\n  Enter Item Number: ";
+            cin >> customer.itemNum;
+
+            cout << "\n  Enter Item Description: ";
+            cin >> customer.itemDescription;
+
+            cout << "\n  Enter Number of Quantity: ";
+            cin >> customer.quantity;
+
+            cout << "\n  Price: ";
+            cin >> customer.price;
+
+            cout << " \n  " << line << endl;
+        }
+
+        cout << "More Transaction?: ";
+        cin >> moreTransaction;
+
+        if (moreTransaction == "N" || moreTransaction == "n")
+        {
+            break;
+        }
+    } while (moreTransaction == "Y" || moreTransaction == "y");
     return 0;
 }
 
