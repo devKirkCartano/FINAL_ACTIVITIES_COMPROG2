@@ -68,7 +68,7 @@ int main()
     cin >> customer.numOfCompanions;
 
     cout << " \n  " << line << endl;
-    cout << "\n\t\t\t    " << design << "  ORDER DETAILS " << design << endl;
+    cout << "\n\t\t\t     " << design << " ORDER DETAILS " << design << endl;
 
     for (int i = 0; i < customer.numOfCompanions; i++)
     {
@@ -83,6 +83,8 @@ int main()
 
         cout << "\n  Price: ";
         cin >> customer.price;
+
+        cout << " \n  " << line << endl;
     }
     return 0;
 }
