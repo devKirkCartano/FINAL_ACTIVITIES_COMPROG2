@@ -53,6 +53,8 @@ int main()
 	bool hasDiscountForTotalOrder = false;
 	double toPayinGroup = 0;
 	double toPayinAnnivDiscount = 0;
+	double toPayinTotalOrder = 0;
+	bool AllinDiscount = false;
 	int lessPay;
 	// Validate month input
 	do
@@ -167,36 +169,74 @@ int main()
 		}
 
 		// Determining the discount base on condition
+
+		// Discount in Group
 		if (customer.numOfCompanions >= 5)
 		{
 			hasDiscountInGroup = true;
 			toPayinGroup = totalAmount * 0.05;
 		}
-		else if (month == "2" && day == "28")
+		// Discount for Anniversarry
+		if (month == "2" && day == "28")
 		{
 			hasAnniversaryDiscount = true;
 			toPayinAnnivDiscount = totalAmount * 0.05;
 		}
-
-		if (hasDiscountInGroup == true)
+		// Discount for Total Amount of order
+		if (totalAmount >= 1500 && totalAmount <= 2500)
 		{
-			cout << "\n  Total Amount: " << totalAmount << endl;
-			cout << "\n  5% "
-				 << " Discount in Group: " << toPayinGroup << endl;
-			lessPay = totalAmount - toPayinGroup;
-			cout << "\n  Discounted Amount: " << lessPay << endl;
+			hasDiscountForTotalOrder = true;
+			toPayinTotalOrder = totalAmount * 0.03;
 		}
-		else if (hasAnniversaryDiscount == true)
+		// All discount condition is satisfied 
+		if (hasDiscountInGroup == true && hasAnniversaryDiscount == true && hasDiscountForTotalOrder == true)
+		{
+			AllinDiscount = true;
+		}
+		// Display Amount to pay in different conditions
+		cout << " \n  " << line << endl;
+		if (AllinDiscount == true)
 		{
 			cout << "\n  Total Amount: " << totalAmount << endl;
 			cout << "\n  5% "
-				 << " Discount in Anniversary: " << toPayinAnnivDiscount << endl;
-			lessPay = totalAmount - toPayinAnnivDiscount;
+				 << "Discount in Group: " << toPayinGroup << endl;
+			cout << "\n  5% "
+				 << "Discount in Anniversary: " << toPayinAnnivDiscount << endl;
+			cout << "\n  3% "
+				 << "Discount in Total Order: " << toPayinTotalOrder << endl;
+			lessPay = totalAmount - toPayinGroup - toPayinAnnivDiscount - toPayinTotalOrder;
 			cout << "\n  Discounted Amount: " << lessPay << endl;
 		}
 		else
 		{
-			cout << "\n  Total Amount: " << totalAmount << endl;
+			if (hasDiscountInGroup == true)
+			{
+				cout << "\n  Total Amount: " << totalAmount << endl;
+				cout << "\n  5% "
+					 << "Discount in Group: " << toPayinGroup << endl;
+				lessPay = totalAmount - toPayinGroup;
+				cout << "\n  Discounted Amount: " << lessPay << endl;
+			}
+			else if (hasAnniversaryDiscount == true)
+			{
+				cout << "\n  Total Amount: " << totalAmount << endl;
+				cout << "\n  5% "
+					 << "Discount in Anniversary: " << toPayinAnnivDiscount << endl;
+				lessPay = totalAmount - toPayinAnnivDiscount;
+				cout << "\n  Discounted Amount: " << lessPay << endl;
+			}
+			else if (hasDiscountForTotalOrder == true)
+			{
+				cout << "\n  Total Amount: " << totalAmount << endl;
+				cout << "\n  3% "
+					 << "Discount in Total Order: " << toPayinTotalOrder << endl;
+				lessPay = totalAmount - toPayinTotalOrder;
+				cout << "\n  Discounted Amount: " << lessPay << endl;
+			}
+			else
+			{
+				cout << "\n  Total Amount: " << totalAmount << endl;
+			}
 		}
 
 		cout << "\n  More Transaction?[Y/N]: ";
