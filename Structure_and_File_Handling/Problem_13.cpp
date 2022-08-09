@@ -16,7 +16,11 @@ void DisplayName()
     cout << " \n\n  " << asterisk << endl;
 }
 
-void DisplayCashier();
+void DisplayCashier()
+{
+	cout << "\n  Cashier Name: " << cashierName << "\t\t\t      Date: " << month << "/" << day << "/" << year << endl;
+	cout;
+}
 void DisplayMenu();
 void CustomerReceipt();
 
@@ -124,8 +128,3 @@ int main()
     return 0;
 }
 
-void DisplayCashier()
-{
-    cout << "\n  Cashier Name: " << cashierName << "\t\t\t      Date: " << month << "/" << day << "/" << year << endl;
-    cout;
-}
