@@ -26,11 +26,11 @@ void DisplayMenu()
 	cout << "\n\n\t\t\t\t\tMENU" << endl;
 	cout << "\t\t\t\t===================";
 	cout << "\n  Item No.\t\t\tItem Description\t\tPrice\n\n";
-	cout << "\n  1 \t\t\t\tUnli-Chicken Wings\t\t 300";
-	cout << "\n  2 \t\t\t\tChicken Inasal\t\t\t 200";
-	cout << "\n  3 \t\t\t\tFamily Size Pizza\t\t 500";
-	cout << "\n  4 \t\t\t\tValue Meal#1\t\t\t 150";
-	cout << "\n  5 \t\t\t\tValue Meal#2\t\t\t 175\n\n";
+	cout << "\n  1 \t\t\t\tUnli-Wings\t\t\t300";
+	cout << "\n  2 \t\t\t\tChick-Inasal\t\t\t200";
+	cout << "\n  3 \t\t\t\tFamSize Pizza\t\t\t500";
+	cout << "\n  4 \t\t\t\tBusog Meal#1\t\t\t150";
+	cout << "\n  5 \t\t\t\tBusog Meal#2\t\t\t175\n\n";
 }
 void CustomerReceipt();
 
@@ -117,26 +117,48 @@ int main()
 
 			if (order[i].itemNum == "1")
 			{
-				order[i].itemDescription = "Unli-Chicken Wings";
+				order[i].itemDescription = "Unli-Wings";
 			}
 			else if (order[i].itemNum == "2")
 			{
-				order[i].itemDescription = "Chicken Inasal";
+				order[i].itemDescription = "ChickInasal";
 			}
 			else if (order[i].itemNum == "3")
 			{
-				order[i].itemDescription = "Family Size Pizza";
+				order[i].itemDescription = "FamSize Pizza";
 			}
 			else if (order[i].itemNum == "4")
 			{
-				order[i].itemDescription = "Value Meal#1";
+				order[i].itemDescription = "Busog Meal#1";
 			}
 			else if (order[i].itemNum == "5")
 			{
-				order[i].itemDescription = "Value Meal#2";
+				order[i].itemDescription = "Busog Meal#2";
 			}
 
 			cout << "\n  Enter Item Description: " << order[i].itemDescription << endl;
+
+			if (order[i].itemNum == "1")
+			{
+				order[i].price = 300;
+			}
+			else if (order[i].itemNum == "2")
+			{
+				order[i].price = 200;
+			}
+			else if (order[i].itemNum == "3")
+			{
+				order[i].price = 500;
+			}
+			else if (order[i].itemNum == "4")
+			{
+				order[i].price = 150;
+			}
+			else if (order[i].itemNum == "5")
+			{
+				order[i].price = 175;
+			}
+			cout << "\n  Enter Item Price: " << order[i].price << endl;
 
 			do
 			{
@@ -144,13 +166,6 @@ int main()
 				cin >> order[i].quantity;
 				cin.ignore(1);
 			} while (order[i].quantity <= 0);
-
-			do
-			{
-				cout << "\n  Enter Item Price: ";
-				cin >> order[i].price;
-				cin.ignore(1);
-			} while (order[i].price <= 0);
 
 			if (i < customer.numOfCompanions - 1)
 			{
@@ -196,7 +211,7 @@ int main()
 		cout << "\n  Item No.\tItem Description\tQty\t\tPrice\tAmount \n\n";
 		for (int i = 0; i < customer.numOfCompanions; i++)
 		{
-			cout << "  " << order[i].itemNum << "\t" << order[i].itemDescription << "\t\t" << order[i].quantity << "\t" << order[i].price << "\t" << order[i].amount << endl;
+			cout << "  " << order[i].itemNum << "\t\t" << order[i].itemDescription << "\t\t" << order[i].quantity << "\t\t" << order[i].price << "\t" << order[i].amount << endl;
 		}
 
 		// Determining the discount base on condition
