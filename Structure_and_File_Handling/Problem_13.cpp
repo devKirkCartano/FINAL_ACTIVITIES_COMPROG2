@@ -52,7 +52,8 @@ int main()
 	bool hasAnniversaryDiscount = false;
 	bool hasDiscountForTotalOrder = false;
 	double toPayinGroup = 0;
-	int less;
+	double toPayinAnnivDiscount = 0;
+	int lessPay;
 	// Validate month input
 	do
 	{
@@ -80,7 +81,7 @@ int main()
 		cout << "\n  Enter Customer's Name: ";
 		getline(cin, customer.customerName);
 
-		cout << "\n  Enter Number of Companions: ";
+		cout << "\n  Enter Number In Group: ";
 		cin >> customer.numOfCompanions;
 
 		// Declare array of structures
@@ -158,33 +159,46 @@ int main()
 			totalAmount = totalAmount + order[i].amount;
 		}
 
-		
 		// Display list of orders in receipt
 		cout << "\n  Item No.\tItem Description\tQty\t\tPrice\tAmount \n\n";
 		for (int i = 0; i < customer.numOfCompanions; i++)
 		{
 			cout << "  " << order[i].itemNum << "\t\t" << order[i].itemDescription << "\t\t\t" << order[i].quantity << "\t\t" << order[i].price << "\t" << order[i].amount << endl;
 		}
-		
+
 		// Determining the discount base on condition
 		if (customer.numOfCompanions >= 5)
 		{
 			hasDiscountInGroup = true;
 			toPayinGroup = totalAmount * 0.05;
 		}
+		else if (month == "2" && day == "28")
+		{
+			hasAnniversaryDiscount = true;
+			toPayinAnnivDiscount = totalAmount * 0.05;
+		}
 
-		if (hasDiscountInGroup)
+		if (hasDiscountInGroup == true)
 		{
 			cout << "\n  Total Amount: " << totalAmount << endl;
-			cout << "\n  Discounted Amount: " << toPayinGroup << endl;
-			less = totalAmount - toPayinGroup;
-			cout << "\n  You Pay Less: " << less << endl;
+			cout << "\n  5% "
+				 << " Discount in Group: " << toPayinGroup << endl;
+			lessPay = totalAmount - toPayinGroup;
+			cout << "\n  Discounted Amount: " << lessPay << endl;
+		}
+		else if (hasAnniversaryDiscount == true)
+		{
+			cout << "\n  Total Amount: " << totalAmount << endl;
+			cout << "\n  5% "
+				 << " Discount in Anniversary: " << toPayinAnnivDiscount << endl;
+			lessPay = totalAmount - toPayinAnnivDiscount;
+			cout << "\n  Discounted Amount: " << lessPay << endl;
 		}
 		else
 		{
 			cout << "\n  Total Amount: " << totalAmount << endl;
 		}
-		
+
 		cout << "\n  More Transaction?[Y/N]: ";
 		cin >> moreTransaction;
 
