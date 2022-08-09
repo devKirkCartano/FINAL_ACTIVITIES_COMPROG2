@@ -51,6 +51,8 @@ int main()
 	bool hasDiscountInGroup = false;
 	bool hasAnniversaryDiscount = false;
 	bool hasDiscountForTotalOrder = false;
+	double toPayinGroup = 0;
+	int less;
 	// Validate month input
 	do
 	{
@@ -116,7 +118,6 @@ int main()
 				cin.ignore(1);
 			} while (order[i].price <= 0);
 
-
 			if (i < customer.numOfCompanions - 1)
 			{
 				do
@@ -153,16 +154,37 @@ int main()
 		}
 		// Calculate total amounnt
 		for (int i = 0; i < customer.numOfCompanions; i++)
-        {
+		{
 			totalAmount = totalAmount + order[i].amount;
 		}
+
+		
 		// Display list of orders in receipt
 		cout << "\n  Item No.\tItem Description\tQty\t\tPrice\tAmount \n\n";
 		for (int i = 0; i < customer.numOfCompanions; i++)
 		{
 			cout << "  " << order[i].itemNum << "\t\t" << order[i].itemDescription << "\t\t\t" << order[i].quantity << "\t\t" << order[i].price << "\t" << order[i].amount << endl;
 		}
-		cout << "\n  Total Amount: " << totalAmount << endl;
+		
+		// Determining the discount base on condition
+		if (customer.numOfCompanions >= 5)
+		{
+			hasDiscountInGroup = true;
+			toPayinGroup = totalAmount * 0.05;
+		}
+
+		if (hasDiscountInGroup)
+		{
+			cout << "\n  Total Amount: " << totalAmount << endl;
+			cout << "\n  Discounted Amount: " << toPayinGroup << endl;
+			less = totalAmount - toPayinGroup;
+			cout << "\n  You Pay Less: " << less << endl;
+		}
+		else
+		{
+			cout << "\n  Total Amount: " << totalAmount << endl;
+		}
+		
 		cout << "\n  More Transaction?[Y/N]: ";
 		cin >> moreTransaction;
 
