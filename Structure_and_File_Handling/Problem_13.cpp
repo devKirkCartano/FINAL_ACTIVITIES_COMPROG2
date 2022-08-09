@@ -20,24 +20,27 @@ void DisplayCashier();
 void DisplayMenu();
 void CustomerReceipt();
 
-struct Customer
+struct CustomerProfile
 {
     // Customer's profile
     string customerName;
     int numOfCompanions;
+};
+
+struct OrderDetails
+{
     // Order Details
     int itemNum;
     string itemDescription;
     int price;
     int quantity;
 };
-
 int main()
 {
 
     DisplayName();
     DisplayCashier();
-    struct Customer customer;
+    struct CustomerProfile customer;
     int customerNum;
     string moreTransaction;
 
@@ -72,30 +75,31 @@ int main()
 
         cout << " \n  " << line << endl;
         cout << "\n\t\t\t     " << design << " ORDER DETAILS " << design << endl;
+        /*
+                for (int i = 0; i < customer.numOfCompanions; i++)
+                {
+                    cout << "\n  Enter Item Number: ";
+                    cin >> customer.itemNum;
 
-        for (int i = 0; i < customer.numOfCompanions; i++)
-        {
-            cout << "\n  Enter Item Number: ";
-            cin >> customer.itemNum;
+                    cout << "\n  Enter Item Description: ";
+                    cin >> customer.itemDescription;
 
-            cout << "\n  Enter Item Description: ";
-            cin >> customer.itemDescription;
+                    cout << "\n  Enter Number of Quantity: ";
+                    cin >> customer.quantity;
 
-            cout << "\n  Enter Number of Quantity: ";
-            cin >> customer.quantity;
+                    cout << "\n  Price: ";
+                    cin >> customer.price;
 
-            cout << "\n  Price: ";
-            cin >> customer.price;
-
-            cout << " \n  " << line << endl;
-        }
+                    cout << " \n  " << line << endl;
+                }
+        */
         system("cls");
         DisplayName();
         DisplayCashier();
         cout << " \n  " << line << endl;
         cout << "\n\t\t\t      KAMAY KAINAN RESTAURANTS " << endl;
         cout << "\n\t\t\t       OFFICIAL RECEIPT\n";
-        
+
         cout << "\n  More Transaction?: ";
         cin >> moreTransaction;
 
