@@ -31,7 +31,6 @@ void DisplayMenu()
 	cout << "\n  3 \t\t\t\tFamily Size Pizza\t\t 500";
 	cout << "\n  4 \t\t\t\tValue Meal#1\t\t\t 150";
 	cout << "\n  5 \t\t\t\tValue Meal#2\t\t\t 175\n\n";
-
 }
 void CustomerReceipt();
 
@@ -92,10 +91,13 @@ int main()
 
 		cout << " \n  " << line << endl;
 		cout << "\n\t\t\t    " << design << " CUSTOMER PROFILE " << design << endl;
-		cout << "\n  Enter Customer's Name: ";
-		getline(cin, customer.customerName);
+		do
+		{
+			cout << "\n  Enter Customer's Name: ";
+			getline(cin, customer.customerName);
+		} while (customer.customerName == "");
 
-		cout << "\n  Enter Number In Group: ";
+		cout << "\n  Enter Number of Person: ";
 		cin >> customer.numOfCompanions;
 
 		// Declare array of structures
@@ -111,13 +113,30 @@ int main()
 				cout << "\n  Enter Item Number: ";
 				cin >> order[i].itemNum;
 				cin.ignore(1);
-			} while (order[i].itemNum == "");
+			} while (order[i].itemNum != "1" && order[i].itemNum != "2" && order[i].itemNum != "3" && order[i].itemNum != "4" && order[i].itemNum != "5");
 
-			do
+			if (order[i].itemNum == "1")
 			{
-				cout << "\n  Enter Item Description: ";
-				getline(cin, order[i].itemDescription);
-			} while (order[i].itemDescription == "");
+				order[i].itemDescription = "Unli-Chicken Wings";
+			}
+			else if (order[i].itemNum == "2")
+			{
+				order[i].itemDescription = "Chicken Inasal";
+			}
+			else if (order[i].itemNum == "3")
+			{
+				order[i].itemDescription = "Family Size Pizza";
+			}
+			else if (order[i].itemNum == "4")
+			{
+				order[i].itemDescription = "Value Meal#1";
+			}
+			else if (order[i].itemNum == "5")
+			{
+				order[i].itemDescription = "Value Meal#2";
+			}
+
+			cout << "\n  Enter Item Description: " << order[i].itemDescription << endl;
 
 			do
 			{
@@ -177,7 +196,7 @@ int main()
 		cout << "\n  Item No.\tItem Description\tQty\t\tPrice\tAmount \n\n";
 		for (int i = 0; i < customer.numOfCompanions; i++)
 		{
-			cout << "  " << order[i].itemNum << "\t\t" << order[i].itemDescription << "\t\t\t" << order[i].quantity << "\t\t" << order[i].price << "\t" << order[i].amount << endl;
+			cout << "  " << order[i].itemNum << "\t" << order[i].itemDescription << "\t\t" << order[i].quantity << "\t" << order[i].price << "\t" << order[i].amount << endl;
 		}
 
 		// Determining the discount base on condition
