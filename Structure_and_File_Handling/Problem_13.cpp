@@ -148,7 +148,8 @@ int main()
 		{
 			order[i].amount = order[i].quantity * order[i].price;
 		}
-
+		
+		// Display list of orders in receipt
 		cout << "\n  Item No.\tItem Description\tQty\t\tPrice\tAmount \n\n";
 		for (int i = 0; i < customer.numOfCompanions; i++)
 		{
