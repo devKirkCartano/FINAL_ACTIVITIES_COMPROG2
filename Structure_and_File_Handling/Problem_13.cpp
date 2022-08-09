@@ -64,6 +64,7 @@ int main()
 
 	do
 	{
+		double totalAmount = 0;
 		system("cls"); // this clear screen function only works in windows operating system
 		DisplayName();
 		DisplayCashier();
@@ -103,7 +104,6 @@ int main()
 				cout << "\n  Enter Quantity: ";
 				cin >> order[i].quantity;
 				cin.ignore(1);
-
 			} while (order[i].quantity <= 0);
 
 			do
@@ -148,15 +148,19 @@ int main()
 		{
 			order[i].amount = order[i].quantity * order[i].price;
 		}
-		
+		// Calculate total amounnt
+		for (int i = 0; i < customer.numOfCompanions; i++)
+        {
+			totalAmount = totalAmount + order[i].amount;
+		}
 		// Display list of orders in receipt
 		cout << "\n  Item No.\tItem Description\tQty\t\tPrice\tAmount \n\n";
 		for (int i = 0; i < customer.numOfCompanions; i++)
 		{
 			cout << "  " << order[i].itemNum << "\t\t" << order[i].itemDescription << "\t\t\t" << order[i].quantity << "\t\t" << order[i].price << "\t" << order[i].amount << endl;
 		}
-
-		cout << "\n  More Transaction?: ";
+		cout << "\n  Total Amount: " << totalAmount << endl;
+		cout << "\n  More Transaction?[Y/N]: ";
 		cin >> moreTransaction;
 
 		if (moreTransaction == "N" || moreTransaction == "n")
