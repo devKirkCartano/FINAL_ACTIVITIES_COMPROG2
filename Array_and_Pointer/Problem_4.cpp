@@ -1,7 +1,7 @@
 /*
 Kirk Cedrick S. Cartano
 BSIT 1 - 2
-PRACTICE PROBLEM #4: PP #3 REWRITTEN
+PRACTICE PROBLEM #4: PP #3 REWRITTEN (descending order)
 */
 #include <iostream>
 using namespace std;
