@@ -292,9 +292,14 @@ int main()
 
 		if (moreTransaction == "N" || moreTransaction == "n")
 		{
+			system("cls");
 			break;
 		}
 	} while (moreTransaction == "Y" || moreTransaction == "y");
-
+	DisplayName();
+	DisplayCashier();
+	cout << " \n  " << line << endl;
+	cout << "\n\t\t\t      Thank you for Service! " << endl;
+	system("pause");
 	return 0;
 }
