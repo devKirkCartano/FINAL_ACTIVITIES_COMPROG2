@@ -22,18 +22,19 @@ void CustomerReceipt();
 
 struct CustomerProfile
 {
-    
     string customerName;
     int numOfCompanions;
 };
 
 struct OrderDetails
 {
-    int itemNum;
+    string itemNum;
     string itemDescription;
     int price;
     int quantity;
+	int amount;
 };
+
 int main()
 {
 
@@ -72,34 +73,47 @@ int main()
         cout << "\n  Enter Number of Companions: ";
         cin >> customer.numOfCompanions;
 
+		// Declare array of structures 
+		struct OrderDetails order[customer.numOfCompanions];
         cout << " \n  " << line << endl;
         cout << "\n\t\t\t     " << design << " ORDER DETAILS " << design << endl;
-        /*
                 for (int i = 0; i < customer.numOfCompanions; i++)
                 {
                     cout << "\n  Enter Item Number: ";
-                    cin >> customer.itemNum;
-
+                    cin >> order[i].itemNum;
+					cin.ignore(1);
                     cout << "\n  Enter Item Description: ";
-                    cin >> customer.itemDescription;
+                    getline(cin,order[i].itemDescription);
 
                     cout << "\n  Enter Number of Quantity: ";
-                    cin >> customer.quantity;
+                    cin >> order[i].quantity;
 
                     cout << "\n  Price: ";
-                    cin >> customer.price;
+                    cin >> order[i].price;
 
                     cout << " \n  " << line << endl;
                 }
-        */
         system("cls");
         DisplayName();
         DisplayCashier();
-        cout << " \n  " << line << endl;
+		cout << " \n  " << line << endl;
         cout << "\n\t\t\t      KAMAY KAINAN RESTAURANTS " << endl;
-        cout << "\n\t\t\t       OFFICIAL RECEIPT\n";
+        cout << "\n\t\t\t       OFFICIAL RECEIPT\n\n";
 
-        cout << "\n  More Transaction?: ";
+		cout << "\n  Customer Name: "<< customer.customerName << endl;
+
+		// Calculate amount of each item
+		for (int i = 0; i < customer.numOfCompanions; i++)
+		{
+			order[i].amount = order[i].quantity * order[i].price;
+		}
+
+		cout << "\n  Item No.\tItem Description\tQty\t\tPrice\tAmount \n\n";
+		for (int i = 0; i < customer.numOfCompanions; i++)
+		{
+			cout << "  " << order[i].itemNum  << "\t\t" << order[i].itemDescription << "\t\t\t" << order[i].quantity  << "\t\t"<< order[i].price << "\t" << order[i].amount << endl;
+		}
+		cout << "\n  More Transaction?: ";
         cin >> moreTransaction;
 
         if (moreTransaction == "N" || moreTransaction == "n")
