@@ -36,7 +36,7 @@ struct OrderDetails
     string itemDescription;
     int price;
     int quantity;
-	int amount;
+	double amount;
 };
 
 int main()
