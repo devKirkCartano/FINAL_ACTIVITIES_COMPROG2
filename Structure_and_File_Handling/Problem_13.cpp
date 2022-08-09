@@ -155,7 +155,7 @@ int main()
 		{
 			order[i].amount = order[i].quantity * order[i].price;
 		}
-		// Calculate total amounnt
+		// Calculate total amount
 		for (int i = 0; i < customer.numOfCompanions; i++)
 		{
 			totalAmount = totalAmount + order[i].amount;
@@ -188,7 +188,7 @@ int main()
 			hasDiscountForTotalOrder = true;
 			toPayinTotalOrder = totalAmount * 0.03;
 		}
-		// All discount condition is satisfied 
+		// All discount condition is satisfied
 		if (hasDiscountInGroup == true && hasAnniversaryDiscount == true && hasDiscountForTotalOrder == true)
 		{
 			AllinDiscount = true;
