@@ -48,6 +48,9 @@ int main()
 	int customerNum;
 	string moreTransaction;
 	string entry;
+	bool hasDiscountInGroup = false;
+	bool hasAnniversaryDiscount = false;
+	bool hasDiscountForTotalOrder = false;
 	// Validate month input
 	do
 	{
