@@ -22,14 +22,13 @@ void CustomerReceipt();
 
 struct CustomerProfile
 {
-    // Customer's profile
+    
     string customerName;
     int numOfCompanions;
 };
 
 struct OrderDetails
 {
-    // Order Details
     int itemNum;
     string itemDescription;
     int price;
