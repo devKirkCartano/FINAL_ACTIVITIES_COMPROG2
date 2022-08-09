@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <fstream>
 using namespace std;
 
 const string asterisk(76, '*');
@@ -19,7 +20,16 @@ void DisplayName()
 void DisplayCashier()
 {
     cout << "\n  Cashier Name: " << cashierName << "\t\t\t      Date: " << month << "/" << day << "/" << year << endl;
-    cout;
+}
+void DisplayCashierInFile()
+{
+    fstream myFile;
+    myFile.open("Receipt.txt", ios::out); // write in a txt file
+    if (myFile.is_open())
+    {
+        myFile << "\n  Cashier Name: " << cashierName << "\t\t\t      Date: " << month << "/" << day << "/" << year << endl;
+        myFile.close();
+    }
 }
 void DisplayMenu()
 {
@@ -190,104 +200,123 @@ int main()
             }
         }
         system("cls");
+        fstream myFile;
+        myFile.open("Receipt.txt", ios::app); // append in a txt file
         DisplayName();
         DisplayCashier();
-        cout << " \n  " << line << endl;
-        cout << "\n\t\t\t      KAMAY KAINAN RESTAURANTS " << endl;
-        cout << "\n\t\t\t          OFFICIAL RECEIPT\n\n";
+        if (myFile.is_open())
+        {
+            DisplayCashierInFile();
+            myFile << " \n  " << line << endl;
+            myFile << "\n\t\t\t      KAMAY KAINAN RESTAURANTS " << endl;
+            myFile << "\n\t\t\t          OFFICIAL RECEIPT\n\n";
 
-        cout << "\n  Customer Name: " << customer.customerName << endl;
+            myFile << "\n  Customer Name: " << customer.customerName << endl;
 
-        // Calculate amount of each item
-        for (int i = 0; i < customer.numOfCompanions; i++)
-        {
-            order[i].amount = order[i].quantity * order[i].price;
-        }
-        // Calculate total amount
-        for (int i = 0; i < customer.numOfCompanions; i++)
-        {
-            totalAmount = totalAmount + order[i].amount;
-        }
-
-        // Display list of orders in receipt
-        cout << "\n  Item No.\tItem Description\tQty\t\tPrice\tAmount \n\n";
-        for (int i = 0; i < customer.numOfCompanions; i++)
-        {
-            cout << "  " << order[i].itemNum << "\t\t" << order[i].itemDescription << "\t\t" << order[i].quantity << "\t\t" << order[i].price << "\t" << order[i].amount << endl;
-        }
-
-        // Determining the discount base on condition
-
-        // Discount in Group
-        if (customer.numOfCompanions >= 5)
-        {
-            hasDiscountInGroup = true;
-            toPayinGroup = totalAmount * 0.05;
-        }
-        // Discount for Anniversary
-        if (month == "2" && day == "28")
-        {
-            hasAnniversaryDiscount = true;
-            toPayinAnnivDiscount = totalAmount * 0.05;
-        }
-        // Discount for Total Amount of order
-        if (totalAmount >= 1500 && totalAmount <= 2500)
-        {
-            hasDiscountForTotalOrder = true;
-            toPayinTotalOrder = totalAmount * 0.03;
-        }
-        // All discount condition is satisfied
-        if (hasDiscountInGroup == true && hasAnniversaryDiscount == true && hasDiscountForTotalOrder == true)
-        {
-            AllinDiscount = true;
-        }
-        // Display Amount to pay in different conditions
-        cout << " \n  " << line << endl;
-        if (AllinDiscount == true)
-        {
-            cout << "\n  Total Amount: " << totalAmount << endl;
-            cout << "\n  5% "
-                 << "Discount in Group: " << toPayinGroup << endl;
-            cout << "\n  5% "
-                 << "Discount in Anniversary: " << toPayinAnnivDiscount << endl;
-            cout << "\n  3% "
-                 << "Discount in Total Order: " << toPayinTotalOrder << endl;
-            lessPay = totalAmount - toPayinGroup - toPayinAnnivDiscount - toPayinTotalOrder;
-            cout << "\n  Discounted Amount: " << lessPay << endl;
-        }
-        else
-        {
-            if (hasDiscountInGroup == true)
+            // Calculate amount of each item
+            for (int i = 0; i < customer.numOfCompanions; i++)
             {
-                cout << "\n  Total Amount: " << totalAmount << endl;
-                cout << "\n  5% "
-                     << "Discount in Group: " << toPayinGroup << endl;
-                lessPay = totalAmount - toPayinGroup;
-                cout << "\n  Discounted Amount: " << lessPay << endl;
+                order[i].amount = order[i].quantity * order[i].price;
             }
-            else if (hasAnniversaryDiscount == true)
+            // Calculate total amount
+            for (int i = 0; i < customer.numOfCompanions; i++)
             {
-                cout << "\n  Total Amount: " << totalAmount << endl;
-                cout << "\n  5% "
-                     << "Discount in Anniversary: " << toPayinAnnivDiscount << endl;
-                lessPay = totalAmount - toPayinAnnivDiscount;
-                cout << "\n  Discounted Amount: " << lessPay << endl;
+                totalAmount = totalAmount + order[i].amount;
             }
-            else if (hasDiscountForTotalOrder == true)
+
+            // Display list of orders in receipt
+            myFile << "\n  Item No.\tItem Description\tQty\t\tPrice\tAmount \n\n";
+            for (int i = 0; i < customer.numOfCompanions; i++)
             {
-                cout << "\n  Total Amount: " << totalAmount << endl;
-                cout << "\n  3% "
-                     << "Discount in Total Order: " << toPayinTotalOrder << endl;
-                lessPay = totalAmount - toPayinTotalOrder;
-                cout << "\n  Discounted Amount: " << lessPay << endl;
+                myFile << "  " << order[i].itemNum << "\t\t" << order[i].itemDescription << "\t\t" << order[i].quantity << "\t\t" << order[i].price << "\t" << order[i].amount << endl;
+            }
+
+            // Determining the discount base on condition
+
+            // Discount in Group
+            if (customer.numOfCompanions >= 5)
+            {
+                hasDiscountInGroup = true;
+                toPayinGroup = totalAmount * 0.05;
+            }
+            // Discount for Anniversary
+            if (month == "2" && day == "28")
+            {
+                hasAnniversaryDiscount = true;
+                toPayinAnnivDiscount = totalAmount * 0.05;
+            }
+            // Discount for Total Amount of order
+            if (totalAmount >= 1500 && totalAmount <= 2500)
+            {
+                hasDiscountForTotalOrder = true;
+                toPayinTotalOrder = totalAmount * 0.03;
+            }
+            // All discount condition is satisfied
+            if (hasDiscountInGroup == true && hasAnniversaryDiscount == true && hasDiscountForTotalOrder == true)
+            {
+                AllinDiscount = true;
+            }
+            // Display Amount to pay in different conditions
+            cout << " \n  " << line << endl;
+            if (AllinDiscount == true)
+            {
+                myFile << "\n  Total Amount: " << totalAmount << endl;
+                myFile << "\n  5% "
+                       << "Discount in Group: " << toPayinGroup << endl;
+                myFile << "\n  5% "
+                       << "Discount in Anniversary: " << toPayinAnnivDiscount << endl;
+                myFile << "\n  3% "
+                       << "Discount in Total Order: " << toPayinTotalOrder << endl;
+                lessPay = totalAmount - toPayinGroup - toPayinAnnivDiscount - toPayinTotalOrder;
+                myFile << "\n  Discounted Amount: " << lessPay << endl;
             }
             else
             {
-                cout << "\n  Total Amount: " << totalAmount << endl;
+                if (hasDiscountInGroup == true)
+                {
+                    myFile << "\n  Total Amount: " << totalAmount << endl;
+                    myFile << "\n  5% "
+                           << "Discount in Group: " << toPayinGroup << endl;
+                    lessPay = totalAmount - toPayinGroup;
+                    myFile << "\n  Discounted Amount: " << lessPay << endl;
+                }
+                else if (hasAnniversaryDiscount == true)
+                {
+                    myFile << "\n  Total Amount: " << totalAmount << endl;
+                    myFile << "\n  5% "
+                           << "Discount in Anniversary: " << toPayinAnnivDiscount << endl;
+                    lessPay = totalAmount - toPayinAnnivDiscount;
+                    myFile << "\n  Discounted Amount: " << lessPay << endl;
+                }
+                else if (hasDiscountForTotalOrder == true)
+                {
+                    myFile << "\n  Total Amount: " << totalAmount << endl;
+                    myFile << "\n  3% "
+                           << "Discount in Total Order: " << toPayinTotalOrder << endl;
+                    lessPay = totalAmount - toPayinTotalOrder;
+                    myFile << "\n  Discounted Amount: " << lessPay << endl;
+                }
+                else
+                {
+                    myFile << "\n  Total Amount: " << totalAmount << endl;
+                }
             }
+            myFile.close();
+        }
+        system("cls");
+        myFile.open("Receipt.txt", ios::in); // read from a txt file
+        if (myFile.is_open())
+        {
+            string readline;
+            while (getline(myFile, readline))
+            {
+                cout << readline << endl;
+            }
+            myFile.close();
         }
 
-        cout << "\n  More Transaction?[Y/N]: ";
+        cout << " \n  " << line << endl;
+        cout << "\n\n  More Transaction?[Y/N]: ";
         cin >> moreTransaction;
 
         if (moreTransaction == "N" || moreTransaction == "n")
