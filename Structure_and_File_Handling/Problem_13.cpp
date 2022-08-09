@@ -21,7 +21,18 @@ void DisplayCashier()
 	cout << "\n  Cashier Name: " << cashierName << "\t\t\t      Date: " << month << "/" << day << "/" << year << endl;
 	cout;
 }
-void DisplayMenu();
+void DisplayMenu()
+{
+	cout << "\n\n\t\t\t\t\tMENU" << endl;
+	cout << "\t\t\t\t===================";
+	cout << "\n  Item No.\t\t\tItem Description\t\tPrice\n\n";
+	cout << "\n  1 \t\t\t\tUnli-Chicken Wings\t\t 300";
+	cout << "\n  2 \t\t\t\tChicken Inasal\t\t\t 200";
+	cout << "\n  3 \t\t\t\tFamily Size Pizza\t\t 500";
+	cout << "\n  4 \t\t\t\tValue Meal#1\t\t\t 150";
+	cout << "\n  5 \t\t\t\tValue Meal#2\t\t\t 175\n\n";
+
+}
 void CustomerReceipt();
 
 struct CustomerProfile
@@ -76,6 +87,7 @@ int main()
 		system("cls"); // this clear screen function only works in windows operating system
 		DisplayName();
 		DisplayCashier();
+		DisplayMenu();
 		cin.ignore(1);
 
 		cout << " \n  " << line << endl;
@@ -176,7 +188,7 @@ int main()
 			hasDiscountInGroup = true;
 			toPayinGroup = totalAmount * 0.05;
 		}
-		// Discount for Anniversarry
+		// Discount for Anniversary
 		if (month == "2" && day == "28")
 		{
 			hasAnniversaryDiscount = true;
