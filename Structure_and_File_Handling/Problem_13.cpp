@@ -286,8 +286,8 @@ int main()
 				cout << "\n  Total Amount: " << totalAmount << endl;
 			}
 		}
-
-		cout << "\n  More Transaction?[Y/N]: ";
+		cout << " \n  " << line << endl;
+		cout << "\n\n  More Transaction?[Y/N]: ";
 		cin >> moreTransaction;
 
 		if (moreTransaction == "N" || moreTransaction == "n")
