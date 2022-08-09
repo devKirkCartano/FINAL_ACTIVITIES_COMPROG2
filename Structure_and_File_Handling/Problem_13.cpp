@@ -98,7 +98,7 @@ int main()
         DisplayCashier();
 		cout << " \n  " << line << endl;
         cout << "\n\t\t\t      KAMAY KAINAN RESTAURANTS " << endl;
-        cout << "\n\t\t\t       OFFICIAL RECEIPT\n\n";
+        cout << "\n\t\t\t          OFFICIAL RECEIPT\n\n";
 
 		cout << "\n  Customer Name: "<< customer.customerName << endl;
 
