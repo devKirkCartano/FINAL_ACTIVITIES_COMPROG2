@@ -32,7 +32,6 @@ void DisplayMenu()
 	cout << "\n  4 \t\t\t\tBusog Meal#1\t\t\t150";
 	cout << "\n  5 \t\t\t\tBusog Meal#2\t\t\t175\n\n";
 }
-void CustomerReceipt();
 
 struct CustomerProfile
 {
@@ -54,7 +53,6 @@ int main()
 
 	DisplayName();
 	DisplayCashier();
-	struct CustomerProfile customer;
 	int customerNum;
 	string moreTransaction;
 	string entry;
@@ -91,14 +89,18 @@ int main()
 
 		cout << " \n  " << line << endl;
 		cout << "\n\t\t\t    " << design << " CUSTOMER PROFILE " << design << endl;
+		struct CustomerProfile customer;
 		do
 		{
 			cout << "\n  Enter Customer's Name: ";
 			getline(cin, customer.customerName);
 		} while (customer.customerName == "");
 
-		cout << "\n  Enter Number of Person: ";
-		cin >> customer.numOfCompanions;
+		do
+		{
+			cout << "\n  Enter Number of Person: ";
+			cin >> customer.numOfCompanions;
+		} while (customer.numOfCompanions <= 0);
 
 		// Declare array of structures
 		cout << " \n  " << line << endl;
