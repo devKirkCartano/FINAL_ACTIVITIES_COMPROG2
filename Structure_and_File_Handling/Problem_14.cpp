@@ -20,6 +20,7 @@ void DisplayName()
 void DisplayCashier()
 {
     cout << "\n  Cashier Name: " << cashierName << "\t\t\t      Date: " << month << "/" << day << "/" << year << endl;
+    cout;
 }
 void DisplayCashierInFile()
 {
@@ -73,6 +74,12 @@ int main()
     double toPayinAnnivDiscount = 0;
     double toPayinTotalOrder = 0;
     bool AllinDiscount = false;
+    bool DiscountInGroupCombo1 = false;
+    bool DiscountInGroupCombo2 = false;
+    bool AnniversaryDiscountCombo1 = false;
+    bool AnniversaryDiscountCombo2 = false;
+    bool TotalOrderDiscountCombo1 = false;
+    bool TotalOrderDiscountCombo2 = false;
     int lessPay;
     // Validate month input
     do
@@ -204,6 +211,7 @@ int main()
         myFile.open("Receipt.txt", ios::app); // append in a txt file
         DisplayName();
         DisplayCashier();
+        // To append in a txt file
         if (myFile.is_open())
         {
             DisplayCashierInFile();
@@ -256,8 +264,33 @@ int main()
             {
                 AllinDiscount = true;
             }
+            if (hasDiscountInGroup == true && hasAnniversaryDiscount == true)
+            {
+                DiscountInGroupCombo1 = true;
+            }
+            if (hasDiscountInGroup == true && hasDiscountForTotalOrder == true)
+            {
+                DiscountInGroupCombo2 = true;
+            }
+            if (hasAnniversaryDiscount == true && hasDiscountInGroup == true)
+            {
+                AnniversaryDiscountCombo1 = true;
+            }
+            if (hasAnniversaryDiscount == true && hasDiscountForTotalOrder == true)
+            {
+                AnniversaryDiscountCombo2 = true;
+            }
+            if (hasDiscountForTotalOrder == true && hasDiscountInGroup == true)
+            {
+                TotalOrderDiscountCombo1 = true;
+            }
+            if (hasDiscountForTotalOrder == true && hasAnniversaryDiscount == true)
+            {
+                TotalOrderDiscountCombo2 = true;
+            }
+
             // Display Amount to pay in different conditions
-            cout << " \n  " << line << endl;
+            myFile << " \n  " << line << endl;
             if (AllinDiscount == true)
             {
                 myFile << "\n  Total Amount: " << totalAmount << endl;
@@ -268,6 +301,66 @@ int main()
                 myFile << "\n  3% "
                        << "Discount in Total Order: " << toPayinTotalOrder << endl;
                 lessPay = totalAmount - toPayinGroup - toPayinAnnivDiscount - toPayinTotalOrder;
+                myFile << "\n  Discounted Amount: " << lessPay << endl;
+            }
+            else if (DiscountInGroupCombo1 == true)
+            {
+                myFile << "\n  Total Amount: " << totalAmount << endl;
+                myFile << "\n  5% "
+                       << "Discount in Group: " << toPayinGroup << endl;
+                myFile << "\n  5% "
+                       << "Discount in Anniversary: " << toPayinAnnivDiscount << endl;
+                lessPay = totalAmount - toPayinGroup - toPayinAnnivDiscount;
+                myFile << "\n  Discounted Amount: " << lessPay << endl;
+            }
+            else if (DiscountInGroupCombo2 == true)
+            {
+                myFile << "\n  Total Amount: " << totalAmount << endl;
+                myFile << "\n  5% "
+                       << "Discount in Group: " << toPayinGroup << endl;
+                myFile << "\n  3% "
+                       << "Discount in Total Order: " << toPayinTotalOrder << endl;
+                lessPay = totalAmount - toPayinGroup - toPayinTotalOrder;
+                myFile << "\n  Discounted Amount: " << lessPay << endl;
+            }
+            else if (AnniversaryDiscountCombo1 == true)
+            {
+                myFile << "\n  Total Amount: " << totalAmount << endl;
+                myFile << "\n  5% "
+                       << "Discount in Anniversary: " << toPayinAnnivDiscount << endl;
+                myFile << "\n  5% "
+                       << "Discount in Group: " << toPayinGroup << endl;
+                lessPay = totalAmount - toPayinGroup - toPayinAnnivDiscount;
+                myFile << "\n  Discounted Amount: " << lessPay << endl;
+            }
+            else if (AnniversaryDiscountCombo2 == true)
+            {
+                myFile << "\n  Total Amount: " << totalAmount << endl;
+                myFile << "\n  5% "
+                       << "Discount in Anniversary: " << toPayinAnnivDiscount << endl;
+                myFile << "\n  3% "
+                       << "Discount in Total Order: " << toPayinTotalOrder << endl;
+                lessPay = totalAmount - toPayinAnnivDiscount - toPayinTotalOrder;
+                myFile << "\n  Discounted Amount: " << lessPay << endl;
+            }
+            else if (TotalOrderDiscountCombo1 == true)
+            {
+                myFile << "\n  Total Amount: " << totalAmount << endl;
+                myFile << "\n  3% "
+                       << "Discount in Total Order: " << toPayinTotalOrder << endl;
+                myFile << "\n  5% "
+                       << "Discount in Group: " << toPayinGroup << endl;
+                lessPay = totalAmount - toPayinTotalOrder - toPayinGroup;
+                myFile << "\n  Discounted Amount: " << lessPay << endl;
+            }
+            else if (TotalOrderDiscountCombo2 == true)
+            {
+                myFile << "\n  Total Amount: " << totalAmount << endl;
+                myFile << "\n  3% "
+                       << "Discount in Total Order: " << toPayinTotalOrder << endl;
+                myFile << "\n  5% "
+                       << "Discount in Anniversary: " << toPayinAnnivDiscount << endl;
+                lessPay = totalAmount - toPayinTotalOrder - toPayinAnnivDiscount;
                 myFile << "\n  Discounted Amount: " << lessPay << endl;
             }
             else
@@ -314,7 +407,6 @@ int main()
             }
             myFile.close();
         }
-
         cout << " \n  " << line << endl;
         cout << "\n\n  More Transaction?[Y/N]: ";
         cin >> moreTransaction;
