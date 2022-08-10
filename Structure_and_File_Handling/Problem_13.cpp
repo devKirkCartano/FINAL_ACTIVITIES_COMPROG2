@@ -63,6 +63,12 @@ int main()
 	double toPayinAnnivDiscount = 0;
 	double toPayinTotalOrder = 0;
 	bool AllinDiscount = false;
+	bool DiscountInGroupCombo1 = false;
+	bool DiscountInGroupCombo2 = false;
+	bool AnniversaryDiscountCombo1 = false;
+	bool AnniversaryDiscountCombo2 = false;
+	bool TotalOrderDiscountCombo1 = false;
+	bool TotalOrderDiscountCombo2 = false;
 	int lessPay;
 	// Validate month input
 	do
@@ -241,6 +247,31 @@ int main()
 		{
 			AllinDiscount = true;
 		}
+		if (hasDiscountInGroup == true && hasAnniversaryDiscount == true)
+		{
+			DiscountInGroupCombo1 = true;
+		}
+		if (hasDiscountInGroup == true && hasDiscountForTotalOrder == true)
+		{
+			DiscountInGroupCombo2 = true;
+		}
+		if (hasAnniversaryDiscount == true && hasDiscountInGroup == true)
+		{
+			AnniversaryDiscountCombo1 = true;
+		}
+		if (hasAnniversaryDiscount == true && hasDiscountForTotalOrder == true)
+		{
+			AnniversaryDiscountCombo2 = true;
+		}
+		if (hasDiscountForTotalOrder == true && hasDiscountInGroup == true)
+		{
+			TotalOrderDiscountCombo1 = true;
+		}
+		if (hasDiscountForTotalOrder == true && hasAnniversaryDiscount == true)
+		{
+			TotalOrderDiscountCombo2 = true;
+		}
+
 		// Display Amount to pay in different conditions
 		cout << " \n  " << line << endl;
 		if (AllinDiscount == true)
@@ -253,6 +284,66 @@ int main()
 			cout << "\n  3% "
 				 << "Discount in Total Order: " << toPayinTotalOrder << endl;
 			lessPay = totalAmount - toPayinGroup - toPayinAnnivDiscount - toPayinTotalOrder;
+			cout << "\n  Discounted Amount: " << lessPay << endl;
+		}
+		else if (DiscountInGroupCombo1 == true)
+		{
+			cout << "\n  Total Amount: " << totalAmount << endl;
+			cout << "\n  5% "
+				 << "Discount in Group: " << toPayinGroup << endl;
+			cout << "\n  5% "
+				 << "Discount in Anniversary: " << toPayinAnnivDiscount << endl;
+			lessPay = totalAmount - toPayinGroup - toPayinAnnivDiscount;
+			cout << "\n  Discounted Amount: " << lessPay << endl;
+		}
+		else if (DiscountInGroupCombo2 == true)
+		{
+			cout << "\n  Total Amount: " << totalAmount << endl;
+			cout << "\n  5% "
+				 << "Discount in Group: " << toPayinGroup << endl;
+			cout << "\n  3% "
+				 << "Discount in Total Order: " << toPayinTotalOrder << endl;
+			lessPay = totalAmount - toPayinGroup - toPayinTotalOrder;
+			cout << "\n  Discounted Amount: " << lessPay << endl;
+		}
+		else if (AnniversaryDiscountCombo1 == true)
+		{
+			cout << "\n  Total Amount: " << totalAmount << endl;
+			cout << "\n  5% "
+				 << "Discount in Anniversary: " << toPayinAnnivDiscount << endl;
+			cout << "\n  5% "
+				 << "Discount in Group: " << toPayinGroup << endl;
+			lessPay = totalAmount - toPayinGroup - toPayinAnnivDiscount;
+			cout << "\n  Discounted Amount: " << lessPay << endl;
+		}
+		else if (AnniversaryDiscountCombo2 == true)
+		{
+			cout << "\n  Total Amount: " << totalAmount << endl;
+			cout << "\n  5% "
+				 << "Discount in Anniversary: " << toPayinAnnivDiscount << endl;
+			cout << "\n  3% "
+				 << "Discount in Total Order: " << toPayinTotalOrder << endl;
+			lessPay = totalAmount - toPayinAnnivDiscount - toPayinTotalOrder;
+			cout << "\n  Discounted Amount: " << lessPay << endl;
+		}
+		else if (TotalOrderDiscountCombo1 == true)
+		{
+			cout << "\n  Total Amount: " << totalAmount << endl;
+			cout << "\n  3% "
+				 << "Discount in Total Order: " << toPayinTotalOrder << endl;
+			cout << "\n  5% "
+				 << "Discount in Group: " << toPayinGroup << endl;
+			lessPay = totalAmount - toPayinTotalOrder - toPayinGroup;
+			cout << "\n  Discounted Amount: " << lessPay << endl;
+		}
+		else if (TotalOrderDiscountCombo2 == true)
+		{
+			cout << "\n  Total Amount: " << totalAmount << endl;
+			cout << "\n  3% "
+				 << "Discount in Total Order: " << toPayinTotalOrder << endl;
+			cout << "\n  5% "
+				 << "Discount in Anniversary: " << toPayinAnnivDiscount << endl;
+			lessPay = totalAmount - toPayinTotalOrder - toPayinAnnivDiscount;
 			cout << "\n  Discounted Amount: " << lessPay << endl;
 		}
 		else
