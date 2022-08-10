@@ -376,6 +376,7 @@ int main()
 			{
 				cout << "\n  Total Amount: " << totalAmount << endl;
 			}
+			customer.numOfCompanions = 0;
 		}
 		cout << " \n  " << line << endl;
 		cout << "\n\n  More Transaction?[Y/N]: ";

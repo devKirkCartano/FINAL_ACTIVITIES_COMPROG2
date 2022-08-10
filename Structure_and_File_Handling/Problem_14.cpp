@@ -394,6 +394,7 @@ int main()
                     myFile << "\n  Total Amount: " << totalAmount << endl;
                 }
             }
+            customer.numOfCompanions = 0;
             myFile.close();
         }
         system("cls");
