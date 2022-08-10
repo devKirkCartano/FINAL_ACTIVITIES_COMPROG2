@@ -1,3 +1,8 @@
+/*
+Kirk Cedrick S. Cartano
+BSIT 1 - 2
+PRACTICE PROBLEM #14:
+*/
 #include <iostream>
 #include <string>
 #include <fstream>

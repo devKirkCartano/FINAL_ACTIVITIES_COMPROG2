@@ -1,3 +1,8 @@
+/*
+Kirk Cedrick S. Cartano
+BSIT 1 - 2
+PRACTICE PROBLEM #13: 
+*/
 #include <iostream>
 #include <string>
 using namespace std;
